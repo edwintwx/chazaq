@@ -1,0 +1,8 @@
+<h1>New post</h1>
+<%= simple_form_for [@post] do |f| %>
+  <%= f.input :request %>
+  <%= f.input :testimonial %>
+  <%= f.input :content, label: 'My prayer is ...' %>
+  <%= f.input :photo_url, label: 'Photo/Video' ,input_html: {value: '', multiple: "true"}, as: :file %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

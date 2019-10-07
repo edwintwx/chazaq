@@ -1,0 +1,16 @@
+<h1>All posts</h1>
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <p><%= post.content %> | <%= link_to post.user.first_name, user_path(post.user) %> |
+        <% if post.request %>
+          Request
+        <% end %>
+        <% if post.testimonial %>
+          Testimonial
+        <% end %>
+      </p>
+      <p><%= link_to 'Show', post_path(post) %> | <%= link_to 'Edit', edit_post_path(post) %> | <%= link_to 'Delete', post_path(post), method: :delete %></p>
+    </li>
+  <% end %>
+</ul>

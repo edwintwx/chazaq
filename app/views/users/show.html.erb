@@ -1,0 +1,7 @@
+<h2>Show user profile</h2>
+<p><%= @user.first_name %> <%= @user.last_name %></p>
+<p><%= @user.bio %></p>
+<p><%= @user.city %>, <%= @user.country %></p>
+<p><%= @user.email %> -- TODO: Show only if current_user</p>
+<p>#Posts: <%= @user.posts.length %></p>
+<p><%= link_to "Edit", edit_user_path(@user) %> -- TODO: Show only if current_user</p>

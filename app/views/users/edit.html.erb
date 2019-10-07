@@ -1,0 +1,10 @@
+<%= simple_form_for [@user] do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :bio %>
+  <%= f.input :email %>
+  <%= f.input :avatar %>
+  <%= f.input :avatar_cache, as: :hidden %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+  <%= link_to "Back", user_path(@user), class: "btn btn-secondary" %>
+<% end %>
