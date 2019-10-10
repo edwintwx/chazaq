@@ -1,16 +1,32 @@
-<h1>All posts</h1>
-<ul>
-  <% @posts.each do |post| %>
-    <li>
-      <p><%= post.content %> | <%= link_to post.user.first_name, user_path(post.user) %> |
-        <% if post.request %>
-          Request
-        <% end %>
-        <% if post.testimonial %>
-          Testimonial
-        <% end %>
-      </p>
-      <p><%= link_to 'Show', post_path(post) %> | <%= link_to 'Edit', edit_post_path(post) %> | <%= link_to 'Delete', post_path(post), method: :delete %></p>
-    </li>
-  <% end %>
+<ul class="nav nav-pills mt-5 mb-3 mx-auto justify-content-center" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-request-tab" data-toggle="pill" href="#request" role="tab" aria-controls="pills-request" aria-selected="true">Prayer Requests</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-testimonial-tab" data-toggle="pill" href="#testimonial" role="tab" aria-controls="pills-testimonial" aria-selected="false">Testimonial</a>
+  </li>
 </ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="request" role="tabpanel" aria-labelledby="request-tab">
+    <div class="container mt-3">
+      <div class="row">
+        <% @posts.each do |post| %>
+          <% if post.request %>
+            <%= render "components/post_card", post: post %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="testimonial" role="tabpanel" aria-labelledby="testimonial-tab">
+    <div class="container mt-3">
+      <div class="row">
+        <% @posts.each do |post| %>
+          <% if post.testimonial %>
+            <%= render "components/post_card", post: post %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

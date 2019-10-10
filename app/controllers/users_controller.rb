@@ -16,6 +16,15 @@ class UsersController < ApplicationController
 
   end
 
+  def update
+    @user.update(user_params)
+    if !params[:user][:avatar].nil?
+      @user.avatar = params[:user][:avatar]
+    end
+    @user.save
+    redirect_to user_path(current_user)
+  end
+
   private
 
   def set_user
@@ -23,6 +32,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.required(:user).permit(:first_name, :last_name, :description, :email, :avatar)
+    params.required(:user).permit(:first_name, :last_name, :bio, :email, :avatar)
   end
 end

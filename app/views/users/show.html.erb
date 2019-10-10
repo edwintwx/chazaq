@@ -1,7 +1,30 @@
-<h2>Show user profile</h2>
-<p><%= @user.first_name %> <%= @user.last_name %></p>
-<p><%= @user.bio %></p>
-<p><%= @user.city %>, <%= @user.country %></p>
-<p><%= @user.email %> -- TODO: Show only if current_user</p>
-<p>#Posts: <%= @user.posts.length %></p>
-<p><%= link_to "Edit", edit_user_path(@user) %> -- TODO: Show only if current_user</p>
+<div class="user-page">
+  <div class="container bg-white mt-3 p-3">
+    <div class="row">
+      <div class="col-12">
+        <div class="user-image mb-3">
+          <% if @user.avatar.filename.nil? %>
+            <%= image_tag("avatar-default.png", class: "card-post-user avatar-large", width: "100", height: "100", crop: "fill", alt: "avatar") %>
+          <% else %>
+            <%= cl_image_tag(@user.avatar, default_image: "avatar.png", class: "card-post-user avatar-large", width: "100", height: "100", crop: "fill", alt: "avatar") %>
+          <% end %>
+        </div>
+        <div class="user-name mb-3">
+          <h2>Hi <%= @user.first_name %> <%= @user.last_name %>!</h2>
+        </div>
+        <div class="user-details">
+          <p><%= @user.bio %></p>
+        </div>
+        <p></p>
+        <p><%= @user.city %>, <%= @user.country %></p>
+        <% if user_signed_in? %>
+          <% if @user == current_user %>
+            <p><%= @user.email %></p>
+            <p><%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-primary" %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render "shared/post_grid" %>

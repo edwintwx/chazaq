@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order("created_at DESC")
   end
 
   def show
@@ -37,6 +37,12 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    photos = @post.post_photos
+    if photos.count.positive?
+      photos.each do |p|
+        p.destroy
+      end
+    end
     @post.destroy
     redirect_to posts_path
   end
@@ -48,6 +54,6 @@ class PostsController < ApplicationController
   end
 
   def review_params
-    params.required(:post).permit(:content)
+    params.required(:post).permit(:content, :request, :testimonial)
   end
 end

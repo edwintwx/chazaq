@@ -1,10 +1,17 @@
-<%= simple_form_for [@user] do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :bio %>
-  <%= f.input :email %>
-  <%= f.input :avatar %>
-  <%= f.input :avatar_cache, as: :hidden %>
-  <%= f.button :submit, class: "btn btn-primary" %>
-  <%= link_to "Back", user_path(@user), class: "btn btn-secondary" %>
-<% end %>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 mx-auto">
+      <h2 class="mb-3">Update your profile</h2>
+      <%= simple_form_for [@user] do |f| %>
+        <%= f.input :first_name, label: "Your first name" %>
+        <%= f.input :last_name, label: "Your last name" %>
+        <%= f.input :bio, label: "Tell others about you" %>
+        <%= f.input :email, label: "Your email address" %>
+        <%= f.input :avatar, label: "Your profile picture" %>
+        <%= f.input :avatar_cache, as: :hidden %>
+        <%= f.submit "Update profile" , class: "btn btn-primary"  %>
+        <%= link_to "Back", user_path(@user), class: "btn btn-secondary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
