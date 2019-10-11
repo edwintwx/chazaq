@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_03_055337) do
+ActiveRecord::Schema.define(version: 2019_10_11_114955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,12 +33,18 @@ ActiveRecord::Schema.define(version: 2019_10_03_055337) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "follows", force: :cascade do |t|
-    t.bigint "user_id"
-    t.integer "following_id"
+  create_table "follows", id: :serial, force: :cascade do |t|
+    t.string "followable_type", null: false
+    t.integer "followable_id", null: false
+    t.string "follower_type", null: false
+    t.integer "follower_id", null: false
+    t.boolean "blocked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_follows_on_user_id"
+    t.index ["followable_id", "followable_type"], name: "fk_followables"
+    t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"
+    t.index ["follower_id", "follower_type"], name: "fk_follows"
+    t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
   end
 
   create_table "hearts", force: :cascade do |t|
@@ -65,6 +71,8 @@ ActiveRecord::Schema.define(version: 2019_10_03_055337) do
     t.boolean "testimonial"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category"
+    t.boolean "isPrivate", default: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -89,7 +97,6 @@ ActiveRecord::Schema.define(version: 2019_10_03_055337) do
   add_foreign_key "comment_photos", "comments"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "follows", "users"
   add_foreign_key "hearts", "posts"
   add_foreign_key "hearts", "users"
   add_foreign_key "post_photos", "posts"

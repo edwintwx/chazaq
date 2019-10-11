@@ -16,7 +16,13 @@
     <div class="container mt-3">
       <div class="row">
         <% @posts.each do |post| %>
-          <%= render "components/post_card", post: post %>
+          <% if !post.isPrivate %>
+            <%= render "components/post_card", post: post %>
+          <% else %>
+            <% if post.user == current_user %>
+              <%= render "components/post_card", post: post %>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
     </div>

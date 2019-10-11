@@ -1,0 +1,27 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 mx-auto">
+      <h3>Followers</h3>
+      <hr>
+      <div class="followers">
+        <ul class="list-group">
+          <% @followers.each do |follower| %>
+            <li class="list-group-item">
+              <div class="follower d-flex justify-content-between">
+                <div class="follower-name">
+                  <%= link_to user_path(follower) do %>
+                    <%= follower.first_name %> <%= follower.last_name %>
+                  <% end %>
+                </div>
+                <div class="follower-back">
+                  <span class="badge badge-primary badge-pill"><%= follower.follow(@user) ? "Follows you" : "Not following you" %></span>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <%= link_to "Back", :back, class: "btn btn-secondary my-3" %>
+    </div>
+  </div>
+</div>

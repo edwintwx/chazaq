@@ -10,7 +10,7 @@
         <%= f.input :avatar, label: "Your profile picture" %>
         <%= f.input :avatar_cache, as: :hidden %>
         <%= f.submit "Update profile" , class: "btn btn-primary"  %>
-        <%= link_to "Back", user_path(@user), class: "btn btn-secondary" %>
+        <%= link_to "Back", :back, class: "btn btn-secondary" %>
       <% end %>
     </div>
   </div>

@@ -1,4 +1,14 @@
-class Follow < ApplicationRecord
-  belongs_to :follower, foreign_key: 'user_id', class_name: 'User'
-  belongs_to :following, foreign_key: 'following_id', class_name: 'User'
+class Follow < ActiveRecord::Base
+
+  extend ActsAsFollower::FollowerLib
+  extend ActsAsFollower::FollowScopes
+
+  # NOTE: Follows belong to the "followable" and "follower" interface
+  belongs_to :followable, polymorphic: true
+  belongs_to :follower,   polymorphic: true
+
+  def block!
+    self.update_attribute(:blocked, true)
+  end
+
 end

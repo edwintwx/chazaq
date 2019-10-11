@@ -12,10 +12,14 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @request = params[:type] == "prayer"
+    @testimonial = params[:type] == "testimonial"
   end
 
   def create
     @post = Post.new(review_params)
+    @post.request = @post.category == "Prayer"
+    @post.testimonial = @post.category == "Testimonial"
     @post.user = current_user
     @post.save
     if !params[:post][:photo_url].nil?
@@ -54,6 +58,6 @@ class PostsController < ApplicationController
   end
 
   def review_params
-    params.required(:post).permit(:content, :request, :testimonial)
+    params.required(:post).permit(:content, :request, :testimonial, :category, :isPrivate)
   end
 end

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def show
     if User.exists?(params[:id])
       @user = User.find(params[:id])
-      @posts = Post.where(user: params[:id])
+      @posts = Post.where(user: params[:id]).order("created_at DESC")
     else
       flash[:notice] = 'Sorry! This user does not exist.'
       redirect_to root_path
@@ -23,6 +23,16 @@ class UsersController < ApplicationController
     end
     @user.save
     redirect_to user_path(current_user)
+  end
+
+  def followers
+     @user = User.find(params[:user_id])
+    @followers = @user.user_followers
+  end
+
+  def following
+     @user = User.find(params[:user_id])
+    @following = @user.all_following
   end
 
   private
