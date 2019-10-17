@@ -25,6 +25,7 @@
           <% end %>
         <% end %>
       </div>
+      <%= will_paginate @posts %>
     </div>
   </div>
   <div class="tab-pane fade show" id="request" role="tabpanel" aria-labelledby="request-tab">
@@ -37,6 +38,7 @@
         <% end %>
       </div>
     </div>
+    <%= will_paginate @posts %>
   </div>
   <div class="tab-pane fade" id="testimonial" role="tabpanel" aria-labelledby="testimonial-tab">
     <div class="container mt-3">
@@ -48,5 +50,6 @@
         <% end %>
       </div>
     </div>
+    <%= will_paginate @posts %>
   </div>
 </div>
