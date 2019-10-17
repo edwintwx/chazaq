@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   mount_uploader :avatar, PhotoUploader
+  after_create :send_welcome_mail
 
   acts_as_followable
   acts_as_follower
@@ -16,4 +17,10 @@ class User < ApplicationRecord
 
   # has_many :following_relationships, foreign_key: :user_id, class_name: 'Follow'
   # has_many :following, through: :following_relationships, source: :following
+
+  private
+
+  def send_welcome_mail
+    UserMailer.with(user: self).welcome.deliver_now
+  end
 end

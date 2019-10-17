@@ -11,6 +11,7 @@ gem 'redis'
 gem 'carrierwave', '~> 1.2'
 gem 'cloudinary', '~> 1.9.1'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
+gem 'sib-api-v3-sdk'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
@@ -21,6 +22,7 @@ gem 'webpacker', '~> 4.x'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
+  gem 'letter_opener'
 end
 
 group :development, :test do
