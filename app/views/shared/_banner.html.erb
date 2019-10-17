@@ -3,6 +3,11 @@
     <p><strong>CHAZAQ</strong> is a faith-based community where you get prayer support for your prayer request & share your testimonial to inspire others.</p>
     <p><em><small>“I have told you these things, so that in me you may have peace. In this world you will have trouble. But take heart! I have overcome the world.” John 16:33</small></em></p>
     <h1></h1>
-    <%= link_to "Prayer Request", new_post_path(type: "prayer"), class: "btn btn-flat my-2" %> <%= link_to "Share Testimonial", new_post_path(type: "testimonial"), class: "btn btn-flat my-2" %>
+    <%= link_to new_post_path(type: "prayer"), class: "btn btn-flat my-2" do %>
+      <i class="fas fa-plus-circle"></i>  Prayer Request
+    <% end %>
+    <%= link_to new_post_path(type: "testimonial"), class: "btn btn-flat my-2" do %>
+      <i class="fas fa-plus-circle"></i>  Share Testimonial
+    <% end %>
   </div>
 </div>

@@ -30,7 +30,12 @@
         <% if user_signed_in? %>
           <% if @user == current_user %>
             <p><%= @user.email %></p>
-            <p><%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-primary" %></p>
+            <p>
+              <ul class="list-inline">
+                <li class="list-inline-item"><%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-primary" %></li>
+                <li class="list-inline-item"><%= link_to "Change password", edit_user_registration_path, class: "btn btn-secondary" %></li>
+              </ul>
+            </p>
           <% end %>
         <% end %>
           <% if @user != current_user %>
