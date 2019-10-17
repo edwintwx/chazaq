@@ -12,6 +12,7 @@ gem 'carrierwave', '~> 1.2'
 gem 'cloudinary', '~> 1.9.1'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'sib-api-v3-sdk'
+gem 'will_paginate', '~> 3.1.1'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
