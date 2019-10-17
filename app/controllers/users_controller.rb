@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def show
     if User.exists?(params[:id])
       @user = User.find(params[:id])
-      @posts = Post.where(user: params[:id]).order("created_at DESC")
+      @posts = Post.where(user: params[:id]).order("created_at DESC").paginate(page: params[:page])
     else
       flash[:notice] = 'Sorry! This user does not exist.'
       redirect_to root_path
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   def following
      @user = User.find(params[:user_id])
-    @following = @user.all_following.paginate(page: params[:page])
+    @following = @user.following_users.paginate(page: params[:page])
   end
 
   private
