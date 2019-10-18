@@ -48,7 +48,7 @@ class PostsController < ApplicationController
       end
     end
     @post.destroy
-    redirect_to posts_path
+    redirect_to root_path
   end
 
   private

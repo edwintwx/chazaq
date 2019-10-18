@@ -16,12 +16,12 @@
     <div class="container mt-3">
       <div class="row">
         <% @posts.each do |post| %>
-          <% if !post.isPrivate %>
-            <%= render "components/post_card", post: post %>
-          <% else %>
+          <% if post.isPrivate %>
             <% if post.user == current_user %>
               <%= render "components/post_card", post: post %>
             <% end %>
+          <% else %>
+            <%= render "components/post_card", post: post %>
           <% end %>
         <% end %>
       </div>
@@ -33,7 +33,13 @@
       <div class="row">
         <% @posts.each do |post| %>
           <% if post.request %>
-            <%= render "components/post_card", post: post %>
+            <% if post.isPrivate %>
+              <% if post.user == current_user %>
+                <%= render "components/post_card", post: post %>
+              <% end %>
+            <% else %>
+              <%= render "components/post_card", post: post %>
+            <% end %>
           <% end %>
         <% end %>
       </div>
@@ -45,8 +51,14 @@
       <div class="row">
         <% @posts.each do |post| %>
           <% if post.testimonial %>
-            <%= render "components/post_card", post: post %>
-          <% end %>
+            <% if post.isPrivate %>
+              <% if post.user == current_user %>
+                <%= render "components/post_card", post: post %>
+              <% end %>
+            <% else %>
+              <%= render "components/post_card", post: post %>
+            <% end %>
+            <% end %>
         <% end %>
       </div>
     </div>
