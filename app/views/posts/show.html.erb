@@ -38,22 +38,34 @@
           </div>
           <div class="post-utility">
             <h5>
-              <%= link_to post_hearts_path(@post), method: :post, class: "card-link", title: "Heart" do %>
-                <i class="far fa-heart inactive"></i> <small><%= @post.hearts.count %></small>
-              <% end %>
-              <%= link_to new_post_comment_path(@post), class: "card-link", title: "Comment" do %>
-                <i class="far fa-comment"></i> <small><%= @post.comments.count %></small>
-              <% end %>
-              <% if user_signed_in? %>
-                <% if @post.user == current_user %>
-                  <%= link_to edit_post_path(@post), class: "card-link", title: "Edit" do %>
-                    <i class="far fa-edit"></i>
+              <ul class="list-inline" data-post-utility-id="<%= @post.id %>">
+                <li class="list-inline-item" data-post-id="<%= @post.id %>">
+                  <% if current_user.hearts.find_by(post: @post).nil? %>
+                    <%= render "hearts/create", post: @post %>
+                  <% else %>
+                    <%= render "hearts/destroy", post: @post %>
                   <% end %>
-                  <%= link_to post_path(@post), method: :delete, class: "card-link", title: "Delete" do %>
-                    <i class="far fa-trash-alt"></i>
+                </li>
+                <li class="list-inline-item">
+                  <%= link_to new_post_comment_path(@post), class: "card-link", title: "Comment" do %>
+                    <i class="far fa-comment"></i> <small><%= @post.comments.count %></small>
+                  <% end %>
+                </li>
+                <% if user_signed_in? %>
+                  <% if @post.user == current_user %>
+                    <li class="list-inline-item">
+                      <%= link_to edit_post_path(@post), class: "card-link", title: "Edit" do %>
+                        <i class="far fa-edit"></i>
+                      <% end %>
+                    </li>
+                    <li class="list-inline-item">
+                      <%= link_to post_path(@post), method: :delete, class: "card-link", title: "Delete" do %>
+                        <i class="far fa-trash-alt"></i>
+                      <% end %>
+                    </li>
                   <% end %>
                 <% end %>
-              <% end %>
+              </ul>
             </h5>
           </div>
         </div>

@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/imagekit-developer/imagekit-gem.git
+  revision: 5e49535cf6e9055c94d2b632041af766339141bb
+  specs:
+    imagekit (0.1.0)
+      rest-client
+
+GIT
   remote: https://github.com/tcocca/acts_as_follower.git
   revision: c5ac7b9601c4af01eb4d9112330b27be4d694ecc
   branch: master
@@ -248,6 +255,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   font-awesome-sass (~> 5.6.1)
+  imagekit!
   jbuilder (~> 2.0)
   letter_opener
   listen (~> 3.0.5)

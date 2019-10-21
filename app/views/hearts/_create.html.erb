@@ -1,3 +1,3 @@
-<%= link_to post_hearts_path(@post), id: "heart", data: {id: @post.id}, method: :post, class: "card-link", title: "Heart" do %>
+<%= link_to post_hearts_path(@post), id: "heart", data: {id: @post.id}, method: :post, class: "card-link", title: "Heart", remote: :true do %>
   <i class="far fa-heart inactive"></i> <small><%= @post.hearts.count %></small>
 <% end %>

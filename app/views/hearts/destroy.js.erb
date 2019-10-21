@@ -1,0 +1,4 @@
+console.log("Destroy heart");
+document.querySelector("[data-post-id='<%=@post.id%>'] a").remove();
+document.querySelector("[data-post-id='<%=@post.id%>']")
+  .insertAdjacentHTML("afterbegin", '<%= j render "hearts/create", post: @post , heart: @heart  %>');
