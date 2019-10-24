@@ -15,7 +15,7 @@
             <%= f.input :category, label: "", as: :radio_buttons, collection: ['Prayer', 'Testimonial'], wrapper: :vertical_collection_inline, checked: "Testimonial" %>
           <% end %>
           <%= f.input :content, label: 'Type your prayer or testimonial' %>
-          <%= f.input :photo_url, label: 'Upload a photo or video' ,input_html: {value: '', multiple: "true"}, as: :file %>
+          <%= f.input :photo_url, label: 'Upload a photo or video' ,input_html: {value: '', multiple: "false"}, as: :file %>
           <%= f.input :isPrivate, label: 'Private post: only visible to you' %>
           <%= f.submit "Submit", class: "btn btn-primary" %>
           <%= link_to "Back", :back, class: "btn btn-secondary" %>

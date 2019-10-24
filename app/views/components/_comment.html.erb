@@ -5,7 +5,8 @@
         <% if comment.user.avatar.filename.nil? %>
           <%= image_tag("avatar-default.png", class: "card-post-user avatar-bordered", width: "40", height: "40", crop: "thumb", alt: "avatar") %>
         <% else %>
-          <%= cl_image_tag(comment.user.avatar, default_image: "avatar.png", class: "card-post-user avatar-bordered", width: "40", height: "40", crop: "thumb", alt: "avatar") %>
+          <%= image_tag("https://ik.imagekit.io/chazaq/#{comment.user.avatar.file.filename}?tr=w-40,h-40,focus=auto", class: "card-post-user avatar-bordered", crop: "fill", alt: "avatar") %>
+          <%#= cl_image_tag(comment.user.avatar, default_image: "avatar.png", class: "card-post-user avatar-bordered", width: "40", height: "40", crop: "thumb", alt: "avatar") %>
         <% end %>
       </div>
       <div class="post-username flex-grow-1"><%= link_to comment.user.first_name, user_path(comment.user) %></div>

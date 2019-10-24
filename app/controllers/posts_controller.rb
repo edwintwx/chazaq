@@ -22,10 +22,9 @@ class PostsController < ApplicationController
     @post.testimonial = @post.category == "Testimonial"
     @post.user = current_user
     @post.save
+    raise
     if !params[:post][:photo_url].nil?
-      params[:post][:photo_url].each do |photo|
-       PostPhoto.create(photo: photo, post: @post)
-      end
+      PostPhoto.create(photo: params[:post][:photo_url][0], post: @post)
     end
 
     redirect_to post_path(@post)
@@ -37,6 +36,9 @@ class PostsController < ApplicationController
 
   def update
     @post.update(review_params)
+    if !params[:post][:photo_url].nil?
+      PostPhoto.create(photo: params[:post][:photo_url][0], post: @post)
+    end
     redirect_to @post
   end
 
