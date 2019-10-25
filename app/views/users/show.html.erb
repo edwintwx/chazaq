@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-12">
         <div class="user-image mb-3">
-          <% if @user.avatar.filename.nil? %>
+          <% if @user.avatar.file.nil? %>
             <%= image_tag("avatar-default.png", class: "card-post-user avatar-large", width: "100", height: "100", crop: "fill", alt: "avatar") %>
           <% else %>
-            <%= image_tag("https://ik.imagekit.io/chazaq/#{@user.avatar.file.filename}?tr=w-100,h-100,focus=auto", class: "card-post-user avatar-large", crop: "fill", alt: "avatar") %>
+            <%= image_tag(@user.avatar.thumb.url, width: "100", height: "100", class: "card-post-user avatar-large", crop: "fill", alt: "avatar") %>
             <%#= cl_image_tag(@user.avatar, default_image: "avatar.png", class: "card-post-user avatar-large", width: "100", height: "100", crop: "fill", alt: "avatar") %>
           <% end %>
         </div>
