@@ -4,13 +4,13 @@
       <% type = @post.request ? "request" : "testimonial" %>
       <h2 class="mb-3">Edit your <%= type %></h1>
       <% if !@post.post_photos[0].nil? %>
-        <p><%= cl_image_tag(@post.post_photos[0].photo, width: "250", crop: "fill") %></p>
+        <p><%= image_tag(@post.post_photos[0].photo.url, width: "250", crop: "fill") %></p>
       <% else %>
         <p>No image was uploaded</p>
       <% end %>
       <%= simple_form_for [@post] do |f| %>
         <%= f.input :content, label: "Type below to edit your #{type}" %>
-        <%= f.input :photo_url, label: 'Upload an image or video to change existing' ,input_html: {value: '', multiple: "false"}, as: :file %>
+        <%= f.input :photo_url, label: 'Upload an image to change existing' ,input_html: {value: '', multiple: "false"}, as: :file %>
         <%= f.submit "Update", class: "btn btn-primary" %>
         <%= link_to "Back", :back, class: "btn btn-secondary" %>
       <% end %>
