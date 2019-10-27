@@ -1,5 +1,7 @@
 PostPhoto.destroy_all
+Hearts.destroy_all
 Post.destroy_all
+Follow.destroy_all
 User.destroy_all
 
 user1 = User.new(first_name: 'Edwin', last_name: 'Ting', email: 'edwintwx@gmail.com', password: 'password', city: 'Singapore', country: 'Singapore' )
