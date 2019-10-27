@@ -1,5 +1,6 @@
 PostPhoto.destroy_all
 Heart.destroy_all
+Comment.destroy_all
 Post.destroy_all
 Follow.destroy_all
 User.destroy_all
