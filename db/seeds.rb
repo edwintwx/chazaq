@@ -1,6 +1,6 @@
-User.destroy_all
-Post.destroy_all
 PostPhoto.destroy_all
+Post.destroy_all
+User.destroy_all
 
 user1 = User.new(first_name: 'Edwin', last_name: 'Ting', email: 'edwintwx@gmail.com', password: 'password', city: 'Singapore', country: 'Singapore' )
 user1.save!
