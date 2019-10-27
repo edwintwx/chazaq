@@ -1,5 +1,5 @@
 PostPhoto.destroy_all
-Hearts.destroy_all
+Heart.destroy_all
 Post.destroy_all
 Follow.destroy_all
 User.destroy_all
