@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: [:show, :edit]
+  skip_before_action :authenticate_user!, only: [:show, :edit, :followers, :following]
 
   def show
     if User.exists?(params[:id])
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def followers
-     @user = User.find(params[:user_id])
+    @user = User.find(params[:user_id])
     @followers = @user.user_followers.paginate(page: params[:page])
   end
 
