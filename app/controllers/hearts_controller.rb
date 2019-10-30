@@ -1,10 +1,9 @@
 class HeartsController < ApplicationController
   before_action :set_post, only: [:create, :destroy]
-  skip_before_action :authenticate_user!, only: [:create, :destroy]
+  # skip_before_action :authenticate_user!, only: [:create, :destroy]
 
   def create
     @heart = Heart.new(post: @post, user: current_user)
-    # authorize @heart
     @heart.save
     render do |format|
       format.js

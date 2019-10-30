@@ -1,3 +1,9 @@
-<%= link_to heart_path(@post), id: "heart", data: {id: @post.id}, method: :delete, class: "card-link", title: "Heart", remote: :true do %>
-  <i class="fas fa-heart active"></i> <small><%= @post.hearts.count %></small>
+<% if user_signed_in? %>
+  <%= link_to heart_path(@post), id: "heart", data: {id: @post.id}, method: :delete, class: "card-link", title: "Heart", remote: :true do %>
+    <i class="fas fa-heart active"></i> <small><%= @post.hearts.count %></small>
+  <% end %>
+<% else %>
+  <%= link_to heart_path(@post), id: "heart", data: {id: @post.id}, method: :delete, class: "card-link", title: "Heart" do %>
+    <i class="fas fa-heart active"></i> <small><%= @post.hearts.count %></small>
 <% end %>
+
