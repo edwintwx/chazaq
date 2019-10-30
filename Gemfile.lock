@@ -215,6 +215,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    serviceworker-rails (0.6.0)
+      railties (>= 3.1)
     sib-api-v3-sdk (5.2.5)
       json (~> 2.1, >= 2.1.0)
       typhoeus (~> 1.0, >= 1.0.1)
@@ -284,6 +286,7 @@ DEPENDENCIES
   rails (= 5.2.3)
   redis
   sassc-rails
+  serviceworker-rails
   sib-api-v3-sdk
   simple_form (~> 5.0.0)
   spring

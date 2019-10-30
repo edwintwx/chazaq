@@ -15,6 +15,7 @@ gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'sib-api-v3-sdk'
 gem 'will_paginate', '~> 3.1.1'
 gem 'imagekit', github: 'imagekit-developer/imagekit-gem'
+gem "serviceworker-rails"
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
