@@ -1,7 +1,7 @@
 <% if @post.request %>
-  <% content_for :meta_title, "Prayer request by #{@post.user.first_name} on #{DEFAULT_META["meta_product_name"]}" %>
+  <% content_for :meta_title, "Pray with #{@post.user.first_name} on #{DEFAULT_META["meta_product_name"]}" %>
 <% else %>
-  <% content_for :meta_title, "Testimonial by #{@post.user.first_name} on #{DEFAULT_META["meta_product_name"]}" %>
+  <% content_for :meta_title, "Celebrate #{@post.user.first_name} testimonial on #{DEFAULT_META["meta_product_name"]}" %>
 <% end %>
 <% content_for :meta_description, @post.content %>
 <% if @post.post_photos[0].nil? %>
