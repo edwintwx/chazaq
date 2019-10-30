@@ -7,7 +7,17 @@ class PostsController < ApplicationController
   end
 
   def show
-
+    if @post.isPrivate
+      if user_signed_in?
+        if current_user != @post.user
+          flash[:notice] = 'Sorry! You do not have access to view this.'
+          redirect_to root_path
+        end
+      else
+        flash[:notice] = 'Sorry! You do not have access to view this.'
+        redirect_to root_path
+      end
+    end
   end
 
   def new

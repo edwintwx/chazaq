@@ -1,0 +1,93 @@
+<div class="container mt-3">
+    <div class="row mb-3">
+      <div class="col">
+        <%= link_to "Back", :back, class: "btn btn-secondary" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-8 mb-3">
+        <div class="post-image">
+          <% if @post.post_photos[0].nil? %>
+            <%= image_tag("postcard-0#{rand(1..4)}.png", class: "img-fluid", id: "post-image") %>
+          <% else %>
+            <%= image_tag(@post.post_photos[0].photo.url, class: "img-fluid mh-100", id: "post-image") %>
+
+            <%#= cl_image_tag(@post.post_photos[0].photo, :default_image=>"postcard-0#{rand(1..3)}.jpg", class: "img-fluid mh-100", crop: "fill", id: "post-image") %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-3">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="post-header d-flex mb-3 align-items-center">
+              <div class="post-avatar mr-3">
+                <% if @post.user.avatar.filename.nil? %>
+                  <%= image_tag("avatar-default.png", class: "card-post-user avatar-bordered", width: "40", height: "40", crop: "thumb", alt: "avatar") %>
+                <% else %>
+                  <%= image_tag(@post.user.avatar.url, class: "card-post-user avatar-bordered", crop: "fill", alt: "avatar") %>
+                  <%#= cl_image_tag(@post.user.avatar, class: "card-post-user avatar-bordered", width: "40", height: "40", crop: "thumb", alt: "avatar") %>
+                <% end %>
+              </div>
+              <div class="post-username flex-grow-1"><%= link_to @post.user.first_name, user_path(@post.user) %></div>
+              <div class="post-type">
+                <% if @post.request %>
+                  <small class="bg-warning px-2">Request</small>
+                <% end %>
+                <% if @post.testimonial %>
+                  <small class="bg-info px-2">Testimonial</small>
+                <% end %>
+                <% if @post.isPrivate %>
+                  <small class="bg-secondary px-2">Private</small>
+                <% end %>
+              </div>
+            </div>
+            <div class="post-content">
+              <p>
+                <%= @post.content %>
+                <br><small class="text-muted"><%= @post.created_at.strftime("%b %e, %l:%M %p") %></small>
+              </p>
+            </div>
+            <div class="post-utility">
+              <h5>
+                <ul class="list-inline" data-post-utility-id="<%= @post.id %>">
+                  <li class="list-inline-item" data-post-id="<%= @post.id %>">
+                    <% if user_signed_in? %>
+                      <% if current_user.hearts.find_by(post: @post).nil? %>
+                        <%= render "hearts/create", post: @post %>
+                      <% else %>
+                        <%= render "hearts/destroy", post: @post %>
+                      <% end %>
+                    <% else %>
+                      <%= render "hearts/create", post: @post %>
+                    <% end %>
+                  </li>
+                  <li class="list-inline-item">
+                    <%= link_to new_post_comment_path(@post), class: "card-link", title: "Comment" do %>
+                      <i class="far fa-comment"></i> <small><%= @post.comments.count %></small>
+                    <% end %>
+                  </li>
+                  <% if user_signed_in? %>
+                    <% if @post.user == current_user %>
+                      <li class="list-inline-item">
+                        <%= link_to edit_post_path(@post), class: "card-link", title: "Edit" do %>
+                          <i class="far fa-edit"></i>
+                        <% end %>
+                      </li>
+                      <li class="list-inline-item">
+                        <%= link_to post_path(@post), method: :delete, class: "card-link", title: "Delete" do %>
+                          <i class="far fa-trash-alt"></i>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </h5>
+            </div>
+          </div>
+        </div>
+        <% @post.comments.each do |comment| %>
+          <%= render "components/comment", comment: comment %>
+        <% end %>
+      </div>
+    </div>
+  </div>

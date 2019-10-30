@@ -13,10 +13,10 @@
             <small class="bg-warning px-2">Request</small>
           <% end %>
           <% if post.testimonial %>
-              <small class="bg-info px-2">Testimonial</small>
+            <small class="bg-info px-2">Testimonial</small>
           <% end %>
-           <% if post.isPrivate %>
-              <small class="bg-secondary px-2">Private</small>
+          <% if post.isPrivate %>
+            <small class="bg-secondary px-2">Private</small>
           <% end %>
           <p><%= post.content %></p>
           <small class="text-muted"><%= post.created_at.strftime("%b %e, %l:%M %p") %></small>

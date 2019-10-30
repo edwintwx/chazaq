@@ -1,14 +1,22 @@
-<% if @post.request %>
-  <% content_for :meta_title, "Pray with #{@post.user.first_name} on #{DEFAULT_META["meta_product_name"]}" %>
+<% if @post.isPrivate %>
+  <% content_for :meta_title, "#{@post.user.first_name} invites you to join #{DEFAULT_META["meta_product_name"]}" %>
 <% else %>
-  <% content_for :meta_title, "Celebrate #{@post.user.first_name} testimonial on #{DEFAULT_META["meta_product_name"]}" %>
+  <% if @post.request %>
+    <% content_for :meta_title, "Pray with #{@post.user.first_name} on #{DEFAULT_META["meta_product_name"]}" %>
+  <% else %>
+    <% content_for :meta_title, "Celebrate #{@post.user.first_name} testimonial on #{DEFAULT_META["meta_product_name"]}" %>
+  <% end %>
+  <% content_for :meta_description, @post.content %>
+  <% if @post.post_photos[0].nil? %>
+    <% content_for :meta_image, "postcard-0#{rand(1..4)}.png" %>
+  <% else %>
+    <% content_for :meta_image, @post.post_photos[0].photo.url %>
+  <% end %>
 <% end %>
-<% content_for :meta_description, @post.content %>
-<% if @post.post_photos[0].nil? %>
-  <% content_for :meta_image, "postcard-0#{rand(1..4)}.png" %>
-<% else %>
-  <% content_for :meta_image, @post.post_photos[0].photo.url %>
-<% end %>
+
+
+
+
 <div class="container mt-3">
   <div class="row mb-3">
     <div class="col">
@@ -45,7 +53,10 @@
                 <small class="bg-warning px-2">Request</small>
               <% end %>
               <% if @post.testimonial %>
-                  <small class="bg-info px-2">Testimonial</small>
+                <small class="bg-info px-2">Testimonial</small>
+              <% end %>
+              <% if @post.isPrivate %>
+                <small class="bg-secondary px-2">Private</small>
               <% end %>
             </div>
           </div>
