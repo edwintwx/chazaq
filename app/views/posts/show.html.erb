@@ -1,4 +1,20 @@
+<% if @post.request %>
+  <% content_for :meta_title, "Prayer request by #{@post.user.first_name} on #{DEFAULT_META["meta_product_name"]}" %>
+<% else %>
+  <% content_for :meta_title, "Testimonial by #{@post.user.first_name} on #{DEFAULT_META["meta_product_name"]}" %>
+<% end %>
+<% content_for :meta_description, @post.content %>
+<% if @post.post_photos[0].nil? %>
+  <% content_for :meta_image, "postcard-0#{rand(1..4)}.png" %>
+<% else %>
+  <% content_for :meta_image, @post.post_photos[0].photo.url %>
+<% end %>
 <div class="container mt-3">
+  <div class="row mb-3">
+    <div class="col">
+      <%= link_to "Back", :back, class: "btn btn-secondary" %>
+    </div>
+  </div>
   <div class="row">
     <div class="col-12 col-sm-12 col-md-6 col-lg-8 mb-3">
       <div class="post-image">
@@ -43,10 +59,14 @@
             <h5>
               <ul class="list-inline" data-post-utility-id="<%= @post.id %>">
                 <li class="list-inline-item" data-post-id="<%= @post.id %>">
-                  <% if current_user.hearts.find_by(post: @post).nil? %>
-                    <%= render "hearts/create", post: @post %>
+                  <% if user_signed_in? %>
+                    <% if current_user.hearts.find_by(post: @post).nil? %>
+                      <%= render "hearts/create", post: @post %>
+                    <% else %>
+                      <%= render "hearts/destroy", post: @post %>
+                    <% end %>
                   <% else %>
-                    <%= render "hearts/destroy", post: @post %>
+                    <%= render "hearts/create", post: @post %>
                   <% end %>
                 </li>
                 <li class="list-inline-item">
