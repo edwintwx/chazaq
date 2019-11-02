@@ -6,6 +6,7 @@ class HeartsController < ApplicationController
     @heart = Heart.new(post: @post, user: current_user)
     @heart.save
     render do |format|
+      format.html { redirect_to post_path(@post) }
       format.js
     end
   end
@@ -14,6 +15,7 @@ class HeartsController < ApplicationController
     @heart = Heart.find_by(post: @post, user: current_user)
     @heart.destroy
     render do |format|
+      format.html { redirect_to post_path(@post) }
       format.js
     end
   end
